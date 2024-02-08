@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="/splitfavico.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Feature Flag Retirement Dashboard</title>
+</head>
+<body>
+    <select id="workspaceSelect">
+        <option value="">Select Workspace</option>
+        <!-- Workspace options will be added here -->
+    </select>
+    
+    <select id="environmentSelect">
+        <option value="">Select Environment</option>
+        <!-- Environment options will be added here -->
+    </select>
+    
+    <button id="loadFlags">Load Feature Flags</button>
+    <table id="flagsTable">
+        <thead>
+            <tr>
+                <th onclick="sortTable(0)">Flag Name</th>
+                <th onclick="sortTable(1)">Creation Time</th>
+                <th onclick="sortTable(2)">Last Update Time</th>
+                <th onclick="sortTable(3)">Last Traffic Recieved At</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Data rows will be added here -->
+        </tbody>
+    </table>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
