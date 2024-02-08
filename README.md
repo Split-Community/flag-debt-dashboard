@@ -6,7 +6,7 @@ The Flag Debt Dashboard is a web application that helps you identify and manage 
 
 - List all feature flags 
 - Identify stale feature flags based on last update or traffic or creation time
-- View detailed information about each feature flag
+- Click on a column to sort by it. 
 
 
 ## Installation
@@ -28,4 +28,8 @@ The Flag Debt Dashboard is a web application that helps you identify and manage 
     ```bash
     node server.js
 
-5. Navigate to localhost:3000 to view the app
+5. Navigate to `localhost:3000` to view the app
+
+![image](https://github.com/Split-Community/flag-debt-dashboard/assets/1207274/4fb41ee2-aaf0-45ef-9694-ad7259c8e821)
+
+
