@@ -98,7 +98,7 @@ req.end();
       res.on("end", function (chunk) {
         var body = Buffer.concat(chunks);
         var output = JSON.parse(body.toString())
-        console.log(output)
+        //console.log(output)
         var result = {};
         result.offset = output.offset;
         result.limit = output.limit;
