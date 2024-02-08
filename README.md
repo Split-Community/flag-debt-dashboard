@@ -14,7 +14,7 @@ The Flag Debt Dashboard is a web application that helps you identify and manage 
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/your-username/flag-debt-dashboard.git
+   git clone https://github.com/Split-Community/flag-debt-dashboard.git
 
 2. Put your API key in a `.env` file 
     ```
