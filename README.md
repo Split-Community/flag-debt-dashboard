@@ -1,6 +1,6 @@
 # Flag Debt Dashboard
 
-The Flag Debt Dashboard is a web application that helps you identify and manage stale Split feature flags in your codebase. It provides a centralized view of all feature flags in your workspace and environments those that haven't been updated or seen traffic in a while.
+The Flag Debt Dashboard is a web application that helps you identify and manage stale Split feature flags in your codebase. It provides a centralized view of all feature flags in your workspace and environments so you can see those that haven't been updated or seen traffic in a while.
 
 ## Features
 
