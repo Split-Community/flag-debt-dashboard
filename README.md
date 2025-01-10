@@ -7,6 +7,8 @@ The Flag Debt Dashboard is a web application that helps you identify and manage 
 - List all feature flags 
 - Identify stale feature flags based on last update or traffic or creation time
 - Click on a column to sort by it. 
+- Click on individual flags to go to the flag in the Split Console
+- Click on the Flag Owners to either navigate to the group in the Split Console or open your email client to send an email to a flag owner
 
 
 ## Installation
@@ -16,9 +18,10 @@ The Flag Debt Dashboard is a web application that helps you identify and manage 
    ```bash
    git clone https://github.com/Split-Community/flag-debt-dashboard.git
 
-2. Put your API key in a `.env` file 
+2. Put your API key and Org ID in a `.env` file 
     ```
     ADMIN_API_KEY=xxx
+    ORG_ID=yyy
 
 3. Install dependancies
     ```bash

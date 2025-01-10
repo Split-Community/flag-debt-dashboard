@@ -70,7 +70,7 @@ function fetchFeatureFlags(workspaceId, environmentId) {
         .then(data => {
             // Concatenate the new batch of flags to the main array
             featureFlags.push(...data.flags); // Assuming the flags are returned in an array named 'data'
-            updateTable(featureFlags); // Update the table with the current batch of flags
+            updateTable(featureFlags, workspaceId); // Update the table with the current batch of flags
 
             const totalCount = data.totalCount; // Assuming the total count is returned as 'totalCount'
             if (featureFlags.length < totalCount) {
@@ -84,17 +84,30 @@ function fetchFeatureFlags(workspaceId, environmentId) {
 
     fetchBatch();
 }
-function updateTable(flags) {
+
+function formatFlagOwners(flagOwners, orgId, ws) {
+    return flagOwners.map(owner => {
+        if (owner.type === 'user') {
+            return `<a href="mailto:${owner.email}" target="_blank">${owner.email}</a>`;
+        } else if (owner.type === 'group') {
+            return `<a href="https://app.split.io/org/${orgId}/ws/${ws}/admin/groups/details/${owner.id}" target="_blank"> ${owner.ownerName} (Group) </a>`;
+        }
+    }).join(', ');
+}
+
+
+function updateTable(flags, workspaceId) {
     const tableBody = document.querySelector('#flagsTable tbody');
     // Clear existing table rows
     tableBody.innerHTML = '';
     // Add new rows from the fetched flags
     flags.forEach(flag => {
         const row = `<tr>
-        <td>${flag.name}</td>
+        <td><a href="https://app.split.io/org/${flag.orgId}/ws/${workspaceId}/splits/${flag.id}/" target="_blank"> ${flag.name} </a></td>
         <td>${flag.creationTime}</td>
         <td>${flag.lastUpdateTime}</td>
         <td>${flag.lastTrafficReceivedAt}</td>
+        <td>${formatFlagOwners(flag.owners, flag.orgId, workspaceId)}</td>
                      </tr>`;
         tableBody.innerHTML += row;
     });

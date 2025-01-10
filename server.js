@@ -1,18 +1,25 @@
 const express = require('express');
 const https = require('https');
 const envVars = require('dotenv').config().parsed;
+const {ownerMap, flagToOwnerMap} = require('./userGroupMap');
 
 const ADMIN_API_KEY=envVars.ADMIN_API_KEY
+const ORG_ID=envVars.ORG_ID
 const app = express();
 const port = process.env.PORT || 3000;
 
-app.use(express.static('public')); // Serve static files from 'public' directory
+
+(async () => {
+    const flagOwnerMap = await ownerMap(ADMIN_API_KEY);
+
+
+    app.use(express.static('public')); // Serve static files from 'public' directory
 
 app.get("/workspaces", (req, outRes) => {
     var options = {
       method: "GET",
       hostname: "api.split.io",
-      path: "/internal/api/v2/workspaces",
+      path: "/internal/api/v2/workspaces?limit=100",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${ADMIN_API_KEY}`,
@@ -87,10 +94,10 @@ req.end();
       },
       maxRedirects: 20,
     };
-
-    var req = https.request(options, function (res) {
+     
+    var req = https.request(options, async function (res) {
       var chunks = [];
-  
+      const map = await flagToOwnerMap(workspace, flagOwnerMap, ADMIN_API_KEY);
       res.on("data", function (chunk) {
         chunks.push(chunk);
       });
@@ -98,12 +105,21 @@ req.end();
       res.on("end", function (chunk) {
         var body = Buffer.concat(chunks);
         var output = JSON.parse(body.toString())
-        //console.log(output)
         var result = {};
         result.offset = output.offset;
         result.limit = output.limit;
         result.totalCount = output.totalCount
-        result.flags = output.objects.map((split) => { return {'name': split.name,  'lastUpdateTime': new Date(split.lastUpdateTime), 'creationTime': new Date(split.creationTime), 'lastTrafficReceivedAt': new Date(split.lastTrafficReceivedAt)}});
+        result.flags = output.objects.map((split) => {
+          return {
+            name: split.name,
+            id: split.id,
+            owners: map.find((m) => m.name == split.name).owners,
+            lastUpdateTime: new Date(split.lastUpdateTime),
+            creationTime: new Date(split.creationTime),
+            lastTrafficReceivedAt: new Date(split.lastTrafficReceivedAt),
+            orgId: ORG_ID,
+          };
+        });
         outRes.send(result);
       });
   
@@ -117,4 +133,8 @@ req.end();
 app.listen(port, () => {
     console.log(`Feature Flags Dashboard running at http://localhost:${port}`);
 });
+
+
+})();
+
 
