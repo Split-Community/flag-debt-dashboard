@@ -33,6 +33,7 @@ The Flag Debt Dashboard is a web application that helps you identify and manage 
 
 5. Navigate to `localhost:3000` to view the app
 
-![image](https://github.com/Split-Community/flag-debt-dashboard/assets/1207274/4fb41ee2-aaf0-45ef-9694-ad7259c8e821)
+![image](https://github.com/user-attachments/assets/dafd08d7-846c-4f0a-8400-c205e4187a96)
+
 
 
