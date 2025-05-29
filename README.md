@@ -4,9 +4,11 @@ The Flag Debt Dashboard is a web application that helps you identify and manage 
 
 ## Features
 
-- List all feature flags 
+- Toggle between grouped and ungrouped view with a simple checkbox
+- List all feature flags grouped by owner with total flag count per owner
+- Expand/collapse flag groups to focus on specific owners
 - Identify stale feature flags based on last update or traffic or creation time
-- Click on a column to sort by it. 
+- Click on a column to sort by it
 - Click on individual flags to go to the flag in the Split Console
 - Click on the Flag Owners to either navigate to the group in the Split Console or open your email client to send an email to a flag owner
 
@@ -33,7 +35,20 @@ The Flag Debt Dashboard is a web application that helps you identify and manage 
 
 5. Navigate to `localhost:3000` to view the app
 
+## Usage
+
+1. Select a workspace from the dropdown
+2. Select an environment
+3. Toggle the "Group flags by owner" checkbox to switch between views:
+   - **Checked**: Shows flags grouped by owner with total counts
+   - **Unchecked**: Shows a flat list of all flags
+4. Click "Load Feature Flags" to update the view
+5. When in grouped view:
+   - Each owner shows their total flag count
+   - Use the "Show/Hide Flags" button next to each owner to expand/collapse their specific flags
+
 ![image](https://github.com/user-attachments/assets/dafd08d7-846c-4f0a-8400-c205e4187a96)
+
 
 
 

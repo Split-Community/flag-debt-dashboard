@@ -57,3 +57,58 @@ button {
     font-size: 16px;
 }
 
+/* Owner row styling */
+.owner-row {
+    background-color: #e9f7e9;
+}
+
+.owner-header {
+    font-weight: bold;
+    padding: 12px 8px;
+    background-color: #e0f0e0;
+    border-top: 2px solid #4CAF50;
+}
+
+/* Toggle flags button styling */
+.toggle-flags {
+    margin-left: 15px;
+    padding: 5px 10px;
+    font-size: 12px;
+    background-color: #5cb85c;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.toggle-flags:hover {
+    background-color: #4cae4c;
+}
+
+/* Flag row styling */
+.flag-row td {
+    padding-left: 20px;
+    background-color: #f9f9f9;
+}
+
+/* View options styling */
+.view-options {
+    margin: 10px 0;
+    padding: 10px;
+    background-color: #f4f4f4;
+    border-radius: 4px;
+    display: inline-block;
+}
+
+.view-options label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.view-options input[type="checkbox"] {
+    margin-right: 8px;
+    cursor: pointer;
+}
+

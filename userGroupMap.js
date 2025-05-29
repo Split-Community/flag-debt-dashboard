@@ -33,17 +33,21 @@ async function ownerMap(apiKey) {
     }
 
 
-    let nextMarker = null;
+    let nextMarker = "";
     let hasMoreUsers = true;
     while (hasMoreUsers) {
-      await fetch(`https://api.split.io/internal/api/v2/users?limit=200&nextMarker=${nextMarker}`, requestOptions)
+      const nextMarkerParam = nextMarker ? `&nextMarker=${nextMarker}` : '';
+      
+      await fetch(`https://api.split.io/internal/api/v2/users?limit=200${nextMarkerParam}`, requestOptions)
         .then((response) => response.json())
         .then((result) => {
-          if (result.data.length > 0) {
+          if (result.data?.length > 0) {
             result.data.forEach((user) => {
-              map.push({id:user.id, name:user.name, email: user.email, type: 'user'});
+              const userObj = {id: user.id, name: user.name, email: user.email, type: 'user'};
+              map.push(userObj);
             });
-            if(nextMarker !== null) {
+            
+            if (result.nextMarker) {
               nextMarker = result.nextMarker;
             } else {
               hasMoreUsers = false;
@@ -89,7 +93,15 @@ return map;
           name: flag.name,
           owners: flag.owners.map(function (owner) {
             const ownerInfo = ownerMap.find(o => o.id === owner.id);
-            return ownerInfo ? { id: ownerInfo.id, ownerName: ownerInfo.name, email: ownerInfo.type == 'user' ? ownerInfo.email : '', type: ownerInfo.type } : { ownerName: 'Unknown', type: 'Unknown' };
+            return ownerInfo ? { 
+              id: ownerInfo.id, 
+              ownerName: ownerInfo.name, 
+              email: ownerInfo.type === 'user' ? (ownerInfo.email || ownerInfo.name) : '', 
+              type: ownerInfo.type 
+            } : { 
+              ownerName: 'Unknown', 
+              type: 'Unknown' 
+            };
           })
             });
           });
