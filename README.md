@@ -47,7 +47,8 @@ The Flag Debt Dashboard is a web application that helps you identify and manage 
    - Each owner shows their total flag count
    - Use the "Show/Hide Flags" button next to each owner to expand/collapse their specific flags
 
-![image](https://github.com/user-attachments/assets/dafd08d7-846c-4f0a-8400-c205e4187a96)
+![image](https://github.com/user-attachments/assets/04e816d9-8be8-4479-8a24-a29f7618037b)
+
 
 
 
