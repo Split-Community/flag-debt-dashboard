@@ -1,9 +1,9 @@
+// Global variables to store fetched flags and workspace ID
+let cachedFlags = [];
+let lastWorkspaceId = null;
+
 document.addEventListener('DOMContentLoaded', function() {
     fetchWorkspaces();
-    
-    // Store fetched flags to avoid refetching when toggling views
-    let cachedFlags = [];
-    let lastWorkspaceId = null;
 
     document.getElementById('workspaceSelect').addEventListener('change', function() {
         const workspaceId = this.value;
@@ -28,6 +28,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // Add event listener for the group by owner checkbox
     document.getElementById('groupByOwner').addEventListener('change', function() {
         if (cachedFlags.length > 0) {
+            // Immediately update the table when checkbox is toggled
+            console.log('View mode changed, updating table with ' + cachedFlags.length + ' flags');
             updateTable(cachedFlags, lastWorkspaceId);
         }
     });

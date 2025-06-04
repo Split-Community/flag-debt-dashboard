@@ -39,10 +39,10 @@ The Flag Debt Dashboard is a web application that helps you identify and manage 
 
 1. Select a workspace from the dropdown
 2. Select an environment
-3. Toggle the "Group flags by owner" checkbox to switch between views:
+3. Click "Load Feature Flags" to fetch the data
+4. Toggle the "Group flags by owner" checkbox to instantly switch between views:
    - **Checked**: Shows flags grouped by owner with total counts
    - **Unchecked**: Shows a flat list of all flags
-4. Click "Load Feature Flags" to update the view
 5. When in grouped view:
    - Each owner shows their total flag count
    - Use the "Show/Hide Flags" button next to each owner to expand/collapse their specific flags
